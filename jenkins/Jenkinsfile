@@ -6,16 +6,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh '/opt/maven/bin/mvn -B -DskipTests clean package'
+                sh '/opt/maven/bin/mvn mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
             steps {
-                sh '/opt/maven/bin/mvn test'
+                sh '/opt/maven/bin/mvn mvn test'
             }
             post {
                 always {
-                    junit '/opt/maven/bin/mvn target/surefire-reports/*.xml'
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
